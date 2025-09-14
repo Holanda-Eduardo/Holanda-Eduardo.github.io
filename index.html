@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Eduardo Holanda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2gX5K2k0Vl2w4+k7T0o74sR+I/M+u/y/t7f2/a/1mG7p5l7L5z7v7I/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /*
+        ========================================
+        1. Variáveis de Cores e Tipografia
+        ========================================
+        */
+        :root {
+            /* Cores - Modo Claro (Padrão) */
+            --primary-color: #3B82F6;
+            --secondary-color: #F8F9FA;
+            --background-color: #ffffff;
+            --text-color-dark: #1F2937;
+            --text-color-light: #F9FAFB;
+            --accent-color: #FBBF24;
+            --border-color: #E5E7EB;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --card-background: #F9FAFB;
+
+            /* Tipografia */
+            --font-family: 'Inter', sans-serif;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 2.25rem;
+            --font-size-2xl: 3rem;
+        }
+
+        /* Cores - Modo Escuro */
+        body.dark-mode {
+            --primary-color: #60A5FA;
+            --secondary-color: #1F2937;
+            --background-color: #111827;
+            --text-color-dark: #F3F4F6;
+            --text-color-light: #111827;
+            --accent-color: #FCD34D;
+            --border-color: #374151;
+            --shadow-color: rgba(255, 255, 2.55, 0.05);
+            --card-background: #1F2937;
+        }
+
+        /*
+        ========================================
+        2. Estilos Globais e Reset
+        ========================================
+        */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /*
+        ========================================
+        3. Estilos do Header e Navegação
+        ========================================
+        */
+        .header {
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color-dark);
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--primary-color);
+        }
+
+        /*
+        ========================================
+        4. Estilos da Seção Hero (Início)
+        ========================================
+        */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 25px var(--shadow-color);
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-section h1 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2rem;
+        }
+
+        .hero-section .subtitle {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-top: 1rem;
+            color: var(--text-color-dark);
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+        }
+
+        .btn-primary:hover {
+            background-color: #2563EB;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+        }
+
+        /*
+        ========================================
+        5. Estilos das Seções
+        ========================================
+        */
+        section {
+            padding: 6rem 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: var(--font-size-xl);
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .about-section {
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: var(--font-size-lg);
+        }
+
+        /*
+        ========================================
+        6. Estilos da Seção de Habilidades
+        ========================================
+        */
+        .skills-section {
+            background-color: var(--secondary-color);
+            transition: background-color 0.3s ease;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .skill-card {
+            background-color: var(--background-color);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+        }
+        
+        .skill-card h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        /*
+        ========================================
+        7. Estilos do Novo Carrossel de Certificados
+        ========================================
+        */
+        .certifications-section {
+            text-align: center;
+            padding: 6rem 0;
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .certificate-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .certificate-card {
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 1rem;
+            background: var(--card-background);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: left;
+            transition: all 0.3s ease;
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+
+        .certificate-card.active {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+        
+        .certificate-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .certificate-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .certificate-institution {
+            font-size: 1rem;
+            color: #6B7280;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .certificate-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        
+        .skill-tag {
+            background-color: #E5E7EB;
+            color: #4B5563;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        body.dark-mode .skill-tag {
+            background-color: #374151;
+            color: #D1D5DB;
+        }
+        
+        .certificate-link {
+            display: block;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .certificate-link:hover {
+            color: #2563EB;
+        }
+        
+        .certificate-link i {
+            margin-left: 0.5rem;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background-color: #2563EB;
+            transform: scale(1.1);
+        }
+        
+        .nav-btn:disabled {
+            background-color: #9CA3AF;
+            cursor: not-allowed;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: #D1D5DB;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /*
+        ========================================
+        8. Estilos da Seção de Projetos
+        ========================================
+        */
+        .projects-section {
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+        }
+
+        .project-card h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            margin-bottom: 1.25rem;
+            color: var(--text-color-dark);
+        }
+
+        .project-card a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-color);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card a:hover {
+            color: #2563EB;
+            border-color: #2563EB;
+        }
+
+        /*
+        ========================================
+        9. Estilos da Seção de Contato
+        ========================================
+        */
+        .contact-section {
+            background-color: var(--secondary-color);
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-section p {
+            font-size: var(--font-size-base);
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-color-light);
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+        }
+
+        .contact-btn i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-btn.whatsapp {
+            background-color: #25D366;
+        }
+        .contact-btn.whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn.gmail {
+            background-color: #EA4335;
+        }
+        .contact-btn.gmail:hover {
+            background-color: #C1352A;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn.linkedin {
+            background-color: #0A66C2;
+        }
+        .contact-btn.linkedin:hover {
+            background-color: #004182;
+            transform: translateY(-2px);
+        }
+
+        /*
+        ========================================
+        10. Estilos do Footer
+        ========================================
+        */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--text-color-dark);
+            color: var(--secondary-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .footer p {
+            font-size: 0.875rem;
+        }
+
+        /*
+        ========================================
+        11. Responsividade
+        ========================================
+        */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: var(--font-size-xl);
+            }
+
+            .hero-section .subtitle {
+                font-size: var(--font-size-base);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /*
+        ========================================
+        12. Estilos da Nova Seção de Carta de Recomendação
+        ========================================
+        */
+        .recommendation-section {
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .pdf-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            aspect-ratio: 1 / 1.414; /* Proporção de uma folha A4 */
+        }
+        
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#inicio" class="logo"> Eduardo Holanda</a>
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre Mim</a></li>
+                    <li><a href="#certificados">Certificados</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#recomendacao">Recomendação</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle-btn">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Principal (Hero) com foto de perfil -->
+        <section id="inicio" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <img src="./assets/foto_portfolio.png" alt="Foto de Perfil" class="profile-pic">
+                    <h1>Olá, sou Eduardo Holanda.</h1>
+                    <p class="subtitle">Desenvolvedor Web, Cientista de Dados e Especialista em Automação.</p>
+                    <div class="cta-buttons">
+                        <a href="#contato" class="btn btn-primary">Vamos Conversar</a>
+                        <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção "Sobre Mim" com novas subseções -->
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <h2>Sobre Mim</h2>
+                <p>
+                    Sou um desenvolvedor web apaixonado por criar soluções digitais inovadoras, um cientista de dados dedicado a transformar dados em insights valiosos e um especialista em automação focado em otimizar processos para aumentar a eficiência. Com uma combinação única de habilidades técnicas e criatividade, estou sempre em busca de novos desafios que me permitam crescer e contribuir para projetos significativos.
+                    <br><br>
+                    Estou <strong>aberto a projetos</strong> e a novas oportunidades de colaboração. Seja na criação de sites modernos, na análise de dados complexos ou na automação de processos para otimizar o fluxo de trabalho, estou pronto para transformar suas ideias em realidade.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção de Certificados com carrossel interativo -->
+        <section id="certificados" class="certifications-section">
+            <div class="container">
+                <h2>Certificados & Cursos</h2>
+                <div class="certificate-carousel">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Cards dos certificados -->
+                        <div class="certificate-card">
+                            <div class="certificate-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 class="certificate-title">Ciência de Dados</h4>
+                            <p class="certificate-institution">UECE</p>
+                            <div class="certificate-skills">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">Análise de Dados</span>
+                            </div>
+                            <a href="./assets/certificates/Programa_Residencia_Tic-20_480hrs.pdf" class="certificate-link" target="_blank">
+                                Ver Certificado <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="certificate-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4 class="certificate-title">Bootcamp Microsoft AI for Tech</h4>
+                            <p class="certificate-institution">DIO</p>
+                            <div class="certificate-skills">
+                                <span class="skill-tag">GitHub Copilot</span>
+                                <span class="skill-tag">Inteligência Artificial</span>
+                                <span class="skill-tag">Desenvolvimento</span>
+                            </div>
+                            <a href="./assets/certificates/bootcamp_microsoft_ai.pdf" class="certificate-link" target="_blank">
+                                Ver Certificado <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="certificate-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4 class="certificate-title">Decola Tech 2024 Avanade</h4>
+                            <p class="certificate-institution">DIO</p>
+                            <div class="certificate-skills">
+                                <span class="skill-tag">Inovação</span>
+                                <span class="skill-tag">Tecnologia</span>
+                                <span class="skill-tag">Web</span>
+                            </div>
+                            <a href="./assets/certificates/decola_tech.pdf" class="certificate-link" target="_blank">
+                                Ver Certificado <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="certificate-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h4 class="certificate-title">A Emoção como Alicerce</h4>
+                            <p class="certificate-institution">Minicurso</p>
+                            <div class="certificate-skills">
+                                <span class="skill-tag">Soft Skills</span>
+                                <span class="skill-tag">Liderança</span>
+                                <span class="skill-tag">Comunicação</span>
+                            </div>
+                            <a href="./assets/certificates/emocao_como_alicerce.pdf" class="certificate-link" target="_blank">
+                                Ver Certificado <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-indicators" id="carousel-indicators"></div>
+                        <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades" class="skills-section">
+            <div class="container">
+                <h2>Habilidades</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Desenvolvimento Web</h3>
+                        <p>Construção de sites e aplicações interativas e responsivas, com foco em experiência do usuário e performance.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Ciência de Dados</h3>
+                        <p>Análise de dados para extrair insights valiosos, criação de modelos preditivos e visualizações complexas.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Automação</h3>
+                        <p>Desenvolvimento de scripts para automatizar tarefas repetitivas em planilhas e sistemas, aumentando a eficiência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Carta de Recomendação com PDF Embutido -->
+        <section id="recomendacao" class="recommendation-section">
+            <div class="container">
+                <h2>Carta de Recomendação</h2>
+                <div class="pdf-container">
+                    <!--
+                        ATENÇÃO: Este é um URL de exemplo. Por favor, substitua
+                        '/assets/documents/recomendacao.pdf' pelo caminho real
+                        do seu arquivo PDF. Certifique-se de que o arquivo
+                        esteja no diretório correto.
+                    -->
+                    <iframe src="./assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" class="pdf-frame" title="Carta de Recomendação PDF">
+                        <p>Seu navegador não suporta a visualização de PDFs. Você pode <a href="./assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" target="_blank">clicar aqui para baixar o PDF</a>.</p>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos" class="projects-section">
+            <div class="container">
+                <h2>Meus Principais Projetos</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Site Loja de Buquês</h3>
+                        <p>Desenvolvimento de um site de e-commerce completo para uma loja de buquês, com foco em um design visualmente atraente e uma experiência de compra intuitiva.</p>
+                        <a href="https://cordapaixao.github.io/">Ver Projeto</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Site HM Soluções</h3>
+                        <p>Criação de um site institucional para a empresa fictícia "HM Soluções". O projeto incluiu o design, a estrutura e o conteúdo, demonstrando minhas habilidades em web design e front-end.</p>
+                        <a href="https://talduardo.github.io/hmsolucoes/">Ver Projeto</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Automação de Resumos Contábeis com LLMs</h3>
+                        <p>Implementação de um sistema de automação para uma empresa, utilizando modelos de linguagem (LLMs) para analisar e gerar resumos contábeis de forma eficiente. Este projeto demonstra proficiência em ciência de dados e automação de processos.</p>
+                        <a href="https://github.com/Talduardo/Projeto-llms">Ver Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <h2>Contato</h2>
+                <p>Estou sempre disponível para novos projetos, colaborações e para responder às suas perguntas. Vamos conversar!</p>
+                <div class="contact-buttons-container">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5588993744991&text=Ol%C3%A1%21+Visitei+um+site+criado+por+voc%C3%AA+e+queria+falar+mais+com+voc%C3%AA&type=phone_number&app_absent=0" target="_blank" class="contact-btn whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="mailto:eholanda60@gmail.com" class="contact-btn gmail">
+                        <i class="fa-solid fa-envelope"></i> Gmail
+                    </a>
+                    <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/" target="_blank" class="contact-btn linkedin">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Eduardo Holanda. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+        const localStorageKey = 'theme';
+
+        // Função para aplicar o tema com base na preferência salva
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.textContent = '🌙';
+            }
+        };
+
+        const savedTheme = localStorage.getItem(localStorageKey);
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                applyTheme('light');
+                localStorage.setItem(localStorageKey, 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem(localStorageKey, 'dark');
+            }
+        });
+
+        // ===========================================
+        // Lógica do Carrossel de Certificados (Versão com botões e indicadores)
+        // ===========================================
+        class CertificateCarousel {
+            constructor() {
+                this.track = document.getElementById('carousel-track');
+                this.cards = Array.from(this.track.children);
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.indicatorsContainer = document.getElementById('carousel-indicators');
+
+                this.currentIndex = 0;
+                this.autoPlayInterval = null;
+                this.autoPlayTime = 4000;
+
+                this.init();
+            }
+
+            init() {
+                this.createIndicators();
+                this.updateUI();
+                this.bindEvents();
+                this.startAutoPlay();
+            }
+
+            createIndicators() {
+                this.cards.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('indicator');
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                    this.indicatorsContainer.appendChild(indicator);
+                });
+                this.indicators = Array.from(this.indicatorsContainer.children);
+            }
+
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+                // Navegação com as setas do teclado
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        this.prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        this.nextSlide();
+                    }
+                });
+
+                // Pausar o autoplay ao passar o mouse sobre o carrossel
+                this.track.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.track.addEventListener('mouseleave', () => this.startAutoPlay());
+                
+                // Pausar o autoplay nos botões
+                this.prevBtn.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.nextBtn.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.prevBtn.addEventListener('mouseleave', () => this.startAutoPlay());
+                this.nextBtn.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            prevSlide() {
+                this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.cards.length - 1;
+                this.updateUI();
+                this.startAutoPlay(); // Reinicia o autoplay
+            }
+
+            nextSlide() {
+                this.currentIndex = (this.currentIndex < this.cards.length - 1) ? this.currentIndex + 1 : 0;
+                this.updateUI();
+                this.startAutoPlay(); // Reinicia o autoplay
+            }
+
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateUI();
+                this.startAutoPlay(); // Reinicia o autoplay
+            }
+
+            updateUI() {
+                const cardWidth = this.cards[0].offsetWidth + (parseFloat(getComputedStyle(this.cards[0]).marginLeft) * 2);
+                const offset = -this.currentIndex * cardWidth;
+                this.track.style.transform = `translateX(${offset}px)`;
+
+                this.cards.forEach((card, index) => {
+                    card.classList.toggle('active', index === this.currentIndex);
+                });
+
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+            }
+
+            startAutoPlay() {
+                this.stopAutoPlay();
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoPlayTime);
+            }
+
+            stopAutoPlay() {
+                clearInterval(this.autoPlayInterval);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CertificateCarousel();
+        });
+    </script>
+
+</body>
+</html>
