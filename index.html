@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2gX5K2k0Vl2w4+k7T0o74sR+I/M+u/y/t7f2/a/1mG7p5l7L5z7v7I/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /*
         ========================================
@@ -16,25 +17,25 @@
         */
         :root {
             /* Cores - Modo Claro (Padrão) */
-            --primary-color: #3B82F6;
-            --secondary-color: #F8F9FA;
-            --background-color: #ffffff;
-            --text-color-dark: #1F2937;
-            --text-color-light: #F9FAFB;
-            --accent-color: #FBBF24;
-            --border-color: #E5E7EB;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --card-background: #F9FAFB;
+            --primary-color: #3B82F6; /* Azul Primário */
+            --secondary-color: #F8F9FA; /* Fundo Secundário (Claro) */
+            --background-color: #ffffff; /* Fundo Principal */
+            --text-color-dark: #1F2937; /* Texto Escuro */
+            --text-color-light: #F9FAFB; /* Texto Claro */
+            --accent-color: #FBBF24; /* Destaque/Acento */
+            --border-color: #E5E7EB; /* Cor de Borda */
+            --shadow-color: rgba(0, 0, 0, 0.1); /* Cor de Sombra */
+            --card-background: #F9FAFB; /* Fundo de Card */
 
-            /* Tipografia */
+            /* Tipografia Fluida (Melhoria de Responsividade) */
             --font-family: 'Inter', sans-serif;
             --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 2.25rem;
-            --font-size-2xl: 3rem;
+            --font-size-lg: clamp(1.1rem, 1rem + 0.25vw, 1.125rem); /* Cresce suavemente */
+            --font-size-xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem); /* Cresce suavemente */
+            --font-size-2xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem); /* Cresce suavemente */
         }
 
-        /* Cores - Modo Escuro */
+        /* Cores - Modo Escuro (Melhoria de Acessibilidade) */
         body.dark-mode {
             --primary-color: #60A5FA;
             --secondary-color: #1F2937;
@@ -43,7 +44,7 @@
             --text-color-light: #111827;
             --accent-color: #FCD34D;
             --border-color: #374151;
-            --shadow-color: rgba(255, 255, 2.55, 0.05);
+            --shadow-color: rgba(255, 255, 255, 0.05);
             --card-background: #1F2937;
         }
 
@@ -95,6 +96,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Permite que o menu hamburger funcione */
         }
 
         .logo {
@@ -102,6 +104,13 @@
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
+        }
+        
+        /* Contêiner para botões de toggle (agrupa tema e menu) */
+        .nav-toggles {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .nav-links {
@@ -131,6 +140,22 @@
         }
 
         .theme-toggle-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Botão do Menu Hamburger (Novo) */
+        .nav-toggle {
+            display: none; /* Escondido no desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color-dark);
+            transition: color 0.3s ease;
+            z-index: 1100; /* Garante que fique acima */
+        }
+        
+        .nav-toggle:hover {
             color: var(--primary-color);
         }
 
@@ -211,7 +236,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #2563EB;
+            background-color: #2563EB; 
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
         }
@@ -295,7 +320,7 @@
 
         /*
         ========================================
-        7. Estilos do Novo Carrossel de Certificados
+        7. Estilos do Carrossel de Certificados
         ========================================
         */
         .certifications-section {
@@ -311,6 +336,7 @@
             margin: 0 auto;
             padding: 2rem 0;
             overflow: hidden;
+            width: 100%; /* Garante que não estoure */
         }
 
         .carousel-track {
@@ -322,7 +348,7 @@
             flex-shrink: 0;
             width: 100%;
             max-width: 400px;
-            margin: 0 1rem;
+            margin: 0 1rem; 
             background: var(--card-background);
             border-radius: 1.5rem;
             padding: 2rem;
@@ -330,7 +356,7 @@
             text-align: left;
             transition: all 0.3s ease;
             transform: scale(0.9);
-            opacity: 0.7;
+            opacity: 0.7; 
         }
 
         .certificate-card.active {
@@ -482,7 +508,7 @@
         }
 
         .project-card h3 {
-            font-size: var(--font-size-lg);
+            font-size: 1.25rem; 
             margin-bottom: 0.75rem;
             color: var(--primary-color);
         }
@@ -588,27 +614,77 @@
 
         /*
         ========================================
-        11. Responsividade
+        11. Estilos da Seção de Carta de Recomendação
+        ========================================
+        */
+        .recommendation-section {
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .pdf-container {
+            max-width: 800px; 
+            margin: 0 auto;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            aspect-ratio: 1 / 1.414; 
+        }
+        
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /*
+        ========================================
+        12. Responsividade
         ========================================
         */
         @media (max-width: 768px) {
-            .nav {
-                flex-direction: column;
-                gap: 1.5rem;
+            /* Ajuste no padding para mobile */
+            section {
+                padding: 3.5rem 0;
+            }
+            .hero-section {
+                padding: 3rem 0;
+            }
+
+            /* Lógica do Menu Hamburger */
+            .nav-toggle {
+                display: flex; /* Mostra o botão hamburger */
             }
 
             .nav-links {
-                justify-content: center;
+                /* Constrói o menu dropdown */
+                flex-direction: column;
+                gap: 1.5rem;
                 width: 100%;
-                gap: 1rem;
+                order: 3; /* Coloca abaixo do logo e botões */
+                text-align: center;
+                padding: 0;
+                
+                /* Lógica para esconder/mostrar */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+                
+                /* Estilo do container do menu */
+                background-color: var(--background-color);
+                border-top: 1px solid var(--border-color);
+                position: absolute;
+                top: 100%; /* 100% da altura do header */
+                left: 0;
+                right: 0;
+                box-shadow: 0 10px 15px -3px var(--shadow-color);
             }
-
-            .hero-section h1 {
-                font-size: var(--font-size-xl);
-            }
-
-            .hero-section .subtitle {
-                font-size: var(--font-size-base);
+            
+            /* Estado ativo do menu (mostrando) */
+            .nav-links.active {
+                max-height: 50vh; /* Altura máxima visível */
+                padding: 2rem 0; /* Padding quando visível */
             }
 
             .cta-buttons {
@@ -620,32 +696,19 @@
                 flex-direction: column;
                 align-items: center;
             }
-        }
+            
+            /* Ajuste do Carrossel no Mobile */
+            .certificate-card {
+                /* O card deve ocupar quase toda a tela, com pequenas margens */
+                max-width: calc(100% - 2rem); 
+                margin: 0 1rem;
+            }
 
-        /*
-        ========================================
-        12. Estilos da Nova Seção de Carta de Recomendação
-        ========================================
-        */
-        .recommendation-section {
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease;
-        }
-
-        .pdf-container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 2px solid var(--border-color);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            aspect-ratio: 1 / 1.414; /* Proporção de uma folha A4 */
-        }
-        
-        .pdf-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
+            .pdf-container {
+                max-width: 100%;
+                height: 500px; 
+                aspect-ratio: auto;
+            }
         }
     </style>
 </head>
@@ -655,7 +718,20 @@
         <div class="container">
             <nav class="nav">
                 <a href="#inicio" class="logo"> Eduardo Holanda</a>
-                <ul class="nav-links">
+                
+                <!-- Agrupador de Toggles (Tema e Menu) -->
+                <div class="nav-toggles">
+                    <button id="theme-toggle" class="theme-toggle-btn">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                    <!-- Botão Hamburger (Novo) -->
+                    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Links de Navegação (Agora controlados pelo JS no mobile) -->
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#sobre">Sobre Mim</a></li>
                     <li><a href="#certificados">Certificados</a></li>
                     <li><a href="#habilidades">Habilidades</a></li>
@@ -663,9 +739,6 @@
                     <li><a href="#projetos">Projetos</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
-                <button id="theme-toggle" class="theme-toggle-btn">
-                    <span id="theme-icon">🌙</span>
-                </button>
             </nav>
         </div>
     </header>
@@ -686,7 +759,7 @@
             </div>
         </section>
 
-        <!-- Seção "Sobre Mim" com novas subseções -->
+        <!-- Seção "Sobre Mim" -->
         <section id="sobre" class="about-section">
             <div class="container">
                 <h2>Sobre Mim</h2>
@@ -716,7 +789,8 @@
                                 <span class="skill-tag">SQL</span>
                                 <span class="skill-tag">Análise de Dados</span>
                             </div>
-                            <a href="./assets/certificates/Programa_Residencia_Tic-20_480hrs.pdf" class="certificate-link" target="_blank">
+                            <!-- Caminho do arquivo de exemplo -->
+                            <a href="/assets/certificates/Programa_Residencia_Tic-20_480hrs.pdf" class="certificate-link" target="_blank">
                                 Ver Certificado <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -731,7 +805,7 @@
                                 <span class="skill-tag">Inteligência Artificial</span>
                                 <span class="skill-tag">Desenvolvimento</span>
                             </div>
-                            <a href="./assets/certificates/bootcamp_microsoft_ai.pdf" class="certificate-link" target="_blank">
+                            <a href="/assets/certificates/bootcamp_microsoft_ai.pdf" class="certificate-link" target="_blank">
                                 Ver Certificado <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -746,7 +820,7 @@
                                 <span class="skill-tag">Tecnologia</span>
                                 <span class="skill-tag">Web</span>
                             </div>
-                            <a href="./assets/certificates/decola_tech.pdf" class="certificate-link" target="_blank">
+                            <a href="/assets/certificates/decola_tech.pdf" class="certificate-link" target="_blank">
                                 Ver Certificado <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -761,20 +835,21 @@
                                 <span class="skill-tag">Liderança</span>
                                 <span class="skill-tag">Comunicação</span>
                             </div>
-                            <a href="./assets/certificates/emocao_como_alicerce.pdf" class="certificate-link" target="_blank">
+                            <a href="/assets/certificates/emocao_como_alicerce.pdf" class="certificate-link" target="_blank">
                                 Ver Certificado <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
                     <div class="carousel-controls">
-                        <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                        <div class="carousel-indicators" id="carousel-indicators"></div>
-                        <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                        <button class="nav-btn" id="prevBtn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-indicators" id="carousel-indicators" role="tablist"></div>
+                        <button class="nav-btn" id="nextBtn" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Seção de Habilidades -->
         <section id="habilidades" class="skills-section">
             <div class="container">
                 <h2>Habilidades</h2>
@@ -803,16 +878,16 @@
                     <!--
                         ATENÇÃO: Este é um URL de exemplo. Por favor, substitua
                         '/assets/documents/recomendacao.pdf' pelo caminho real
-                        do seu arquivo PDF. Certifique-se de que o arquivo
-                        esteja no diretório correto.
+                        do seu arquivo PDF.
                     -->
-                    <iframe src="./assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" class="pdf-frame" title="Carta de Recomendação PDF">
-                        <p>Seu navegador não suporta a visualização de PDFs. Você pode <a href="./assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" target="_blank">clicar aqui para baixar o PDF</a>.</p>
+                    <iframe src="/assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" class="pdf-frame" title="Carta de Recomendação PDF">
+                        <p>Seu navegador não suporta a visualização de PDFs. Você pode <a href="/assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" target="_blank">clicar aqui para baixar o PDF</a>.</p>
                     </iframe>
                 </div>
             </div>
         </section>
 
+        <!-- Seção de Projetos -->
         <section id="projetos" class="projects-section">
             <div class="container">
                 <h2>Meus Principais Projetos</h2>
@@ -820,22 +895,23 @@
                     <div class="project-card">
                         <h3>Site Loja de Buquês</h3>
                         <p>Desenvolvimento de um site de e-commerce completo para uma loja de buquês, com foco em um design visualmente atraente e uma experiência de compra intuitiva.</p>
-                        <a href="https://cordapaixao.github.io/">Ver Projeto</a>
+                        <a href="https://cordapaixao.github.io/" target="_blank">Ver Projeto</a>
                     </div>
                     <div class="project-card">
                         <h3>Site HM Soluções</h3>
                         <p>Criação de um site institucional para a empresa fictícia "HM Soluções". O projeto incluiu o design, a estrutura e o conteúdo, demonstrando minhas habilidades em web design e front-end.</p>
-                        <a href="https://talduardo.github.io/hmsolucoes/">Ver Projeto</a>
+                        <a href="https://talduardo.github.io/hmsolucoes/" target="_blank">Ver Projeto</a>
                     </div>
                     <div class="project-card">
                         <h3>Automação de Resumos Contábeis com LLMs</h3>
                         <p>Implementação de um sistema de automação para uma empresa, utilizando modelos de linguagem (LLMs) para analisar e gerar resumos contábeis de forma eficiente. Este projeto demonstra proficiência em ciência de dados e automação de processos.</p>
-                        <a href="https://github.com/Talduardo/Projeto-llms">Ver Projeto</a>
+                        <a href="https://github.com/Talduardo/Projeto-llms" target="_blank">Ver Projeto</a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Seção de Contato -->
         <section id="contato" class="contact-section">
             <div class="container">
                 <h2>Contato</h2>
@@ -863,12 +939,14 @@
     </footer>
 
     <script>
+        // ===========================================
+        // Lógica do Modo Escuro
+        // ===========================================
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const body = document.body;
         const localStorageKey = 'theme';
 
-        // Função para aplicar o tema com base na preferência salva
         const applyTheme = (theme) => {
             if (theme === 'dark') {
                 body.classList.add('dark-mode');
@@ -899,11 +977,51 @@
         });
 
         // ===========================================
-        // Lógica do Carrossel de Certificados (Versão com botões e indicadores)
+        // Lógica do Menu Hamburger (Novo)
+        // ===========================================
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (navToggle) {
+            const navIcon = navToggle.querySelector('i');
+            
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isActive = navLinks.classList.contains('active');
+                navToggle.setAttribute('aria-expanded', isActive);
+                
+                // Muda o ícone
+                if (isActive) {
+                    navIcon.classList.remove('fa-bars');
+                    navIcon.classList.add('fa-times');
+                } else {
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fecha o menu ao clicar em um link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        navToggle.setAttribute('aria-expanded', false);
+                        navIcon.classList.remove('fa-times');
+                        navIcon.classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+
+
+        // ===========================================
+        // Lógica do Carrossel de Certificados
         // ===========================================
         class CertificateCarousel {
             constructor() {
                 this.track = document.getElementById('carousel-track');
+                if (!this.track) return; // Não executa se o carrossel não existir
+                
                 this.cards = Array.from(this.track.children);
                 this.prevBtn = document.getElementById('prevBtn');
                 this.nextBtn = document.getElementById('nextBtn');
@@ -912,13 +1030,17 @@
                 this.currentIndex = 0;
                 this.autoPlayInterval = null;
                 this.autoPlayTime = 4000;
+                this.cardWidth = 0; // Será calculado dinamicamente
+                this.resizeTimeout = null; // Para debounce do resize
 
                 this.init();
             }
 
             init() {
+                if (this.cards.length === 0) return; // Não faz nada se não houver cards
+                
                 this.createIndicators();
-                this.updateUI();
+                this._updateCardWidth(); // Calcula a largura inicial
                 this.bindEvents();
                 this.startAutoPlay();
             }
@@ -927,66 +1049,101 @@
                 this.cards.forEach((_, index) => {
                     const indicator = document.createElement('div');
                     indicator.classList.add('indicator');
+                    indicator.setAttribute('role', 'tab');
+                    indicator.setAttribute('aria-controls', `certificate-${index}`);
                     indicator.addEventListener('click', () => this.goToSlide(index));
                     this.indicatorsContainer.appendChild(indicator);
                 });
                 this.indicators = Array.from(this.indicatorsContainer.children);
+                // Define o primeiro indicador como ativo
+                if (this.indicators.length > 0) {
+                    this.indicators[0].classList.add('active');
+                    this.indicators[0].setAttribute('aria-selected', true);
+                }
             }
 
             bindEvents() {
                 this.prevBtn.addEventListener('click', () => this.prevSlide());
                 this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Listener de redimensionamento (Novo)
+                window.addEventListener('resize', () => this._updateCardWidth());
 
-                // Navegação com as setas do teclado
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') {
-                        this.prevSlide();
-                    } else if (e.key === 'ArrowRight') {
-                        this.nextSlide();
-                    }
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
                 });
 
-                // Pausar o autoplay ao passar o mouse sobre o carrossel
-                this.track.addEventListener('mouseenter', () => this.stopAutoPlay());
-                this.track.addEventListener('mouseleave', () => this.startAutoPlay());
+                const carouselContainer = this.track.closest('.certificate-carousel');
+                carouselContainer.addEventListener('mouseenter', () => this.stopAutoPlay());
+                carouselContainer.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            // (Novo) Calcula a largura do card dinamicamente
+             _updateCardWidth() {
+                if (this.resizeTimeout) {
+                    clearTimeout(this.resizeTimeout);
+                }
                 
-                // Pausar o autoplay nos botões
-                this.prevBtn.addEventListener('mouseenter', () => this.stopAutoPlay());
-                this.nextBtn.addEventListener('mouseenter', () => this.stopAutoPlay());
-                this.prevBtn.addEventListener('mouseleave', () => this.startAutoPlay());
-                this.nextBtn.addEventListener('mouseleave', () => this.startAutoPlay());
+                // Debounce para performance
+                this.resizeTimeout = setTimeout(() => {
+                    if (this.cards.length === 0) return;
+                    const cardStyle = getComputedStyle(this.cards[0]);
+                    const cardMargin = parseFloat(cardStyle.marginLeft) + parseFloat(cardStyle.marginRight);
+                    this.cardWidth = this.cards[0].offsetWidth + cardMargin;
+                    
+                    this.updateUI(true); // 'true' para indicar redimensionamento
+                }, 150);
             }
 
             prevSlide() {
                 this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.cards.length - 1;
                 this.updateUI();
-                this.startAutoPlay(); // Reinicia o autoplay
+                this.startAutoPlay(); 
             }
 
             nextSlide() {
                 this.currentIndex = (this.currentIndex < this.cards.length - 1) ? this.currentIndex + 1 : 0;
                 this.updateUI();
-                this.startAutoPlay(); // Reinicia o autoplay
+                this.startAutoPlay(); 
             }
 
             goToSlide(index) {
                 this.currentIndex = index;
                 this.updateUI();
-                this.startAutoPlay(); // Reinicia o autoplay
+                this.startAutoPlay(); 
             }
 
-            updateUI() {
-                const cardWidth = this.cards[0].offsetWidth + (parseFloat(getComputedStyle(this.cards[0]).marginLeft) * 2);
-                const offset = -this.currentIndex * cardWidth;
+            updateUI(isResizing = false) {
+                if (this.cardWidth === 0) return; // Aborta se a largura não foi definida
+
+                const offset = -this.currentIndex * this.cardWidth;
+
+                // Desabilita transição durante resize
+                if (isResizing) {
+                    this.track.style.transition = 'none';
+                }
+            
                 this.track.style.transform = `translateX(${offset}px)`;
+
+                // Re-habilita transição após o 'pulo' do resize
+                if (isResizing) {
+                    // requestAnimationFrame garante que o 'none' foi aplicado
+                    requestAnimationFrame(() => {
+                        this.track.style.transition = 'transform 0.5s ease-in-out';
+                    });
+                }
 
                 this.cards.forEach((card, index) => {
                     card.classList.toggle('active', index === this.currentIndex);
                 });
 
-                this.indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === this.currentIndex);
-                });
+                if (this.indicators) {
+                    this.indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === this.currentIndex);
+                        indicator.setAttribute('aria-selected', index === this.currentIndex);
+                    });
+                }
             }
 
             startAutoPlay() {
@@ -1001,6 +1158,7 @@
             }
         }
 
+        // Garante que o DOM está carregado antes de instanciar
         document.addEventListener('DOMContentLoaded', () => {
             new CertificateCarousel();
         });
@@ -1008,3 +1166,4 @@
 
 </body>
 </html>
+
