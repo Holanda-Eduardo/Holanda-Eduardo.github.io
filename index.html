@@ -4,1166 +4,652 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio | Eduardo Holanda</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
     <style>
-        /*
-        ========================================
-        1. Variáveis de Cores e Tipografia
-        ========================================
-        */
+        /* ========================================
+           1. Variáveis e Base
+        ======================================== */
         :root {
-            /* Cores - Modo Claro (Padrão) */
-            --primary-color: #3B82F6; /* Azul Primário */
-            --secondary-color: #F8F9FA; /* Fundo Secundário (Claro) */
-            --background-color: #ffffff; /* Fundo Principal */
-            --text-color-dark: #1F2937; /* Texto Escuro */
-            --text-color-light: #F9FAFB; /* Texto Claro */
-            --accent-color: #FBBF24; /* Destaque/Acento */
-            --border-color: #E5E7EB; /* Cor de Borda */
-            --shadow-color: rgba(0, 0, 0, 0.1); /* Cor de Sombra */
-            --card-background: #F9FAFB; /* Fundo de Card */
-
-            /* Tipografia Fluida (Melhoria de Responsividade) */
-            --font-family: 'Inter', sans-serif;
-            --font-size-base: 1rem;
-            --font-size-lg: clamp(1.1rem, 1rem + 0.25vw, 1.125rem); /* Cresce suavemente */
-            --font-size-xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem); /* Cresce suavemente */
-            --font-size-2xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem); /* Cresce suavemente */
+            --primary: #2563EB;
+            --primary-dark: #1e40af;
+            --secondary: #64748B;
+            --bg-body: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --border: #E2E8F0;
+            --shadow-soft: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-deep: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Cores - Modo Escuro (Melhoria de Acessibilidade) */
         body.dark-mode {
-            --primary-color: #60A5FA;
-            --secondary-color: #1F2937;
-            --background-color: #111827;
-            --text-color-dark: #F3F4F6;
-            --text-color-light: #111827;
-            --accent-color: #FCD34D;
-            --border-color: #374151;
-            --shadow-color: rgba(255, 255, 255, 0.05);
-            --card-background: #1F2937;
+            --primary: #60A5FA;
+            --secondary: #94A3B8;
+            --bg-body: #0F172A;
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --border: #334155;
+            --shadow-soft: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-deep: 0 20px 25px -5px rgba(0,0,0,0.5);
         }
 
-        /*
-        ========================================
-        2. Estilos Globais e Reset
-        ========================================
-        */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: var(--font-family);
-            line-height: 1.6;
-            color: var(--text-color-dark);
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            padding-top: 70px;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        /*
-        ========================================
-        3. Estilos do Header e Navegação
-        ========================================
-        */
-        .header {
-            background-color: var(--background-color);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Permite que o menu hamburger funcione */
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        /* Contêiner para botões de toggle (agrupa tema e menu) */
-        .nav-toggles {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color-dark);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .theme-toggle-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-color-dark);
-            transition: color 0.3s ease;
-        }
-
-        .theme-toggle-btn:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Botão do Menu Hamburger (Novo) */
-        .nav-toggle {
-            display: none; /* Escondido no desktop */
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-color-dark);
-            transition: color 0.3s ease;
-            z-index: 1100; /* Garante que fique acima */
-        }
-        
-        .nav-toggle:hover {
-            color: var(--primary-color);
-        }
-
-        /*
-        ========================================
-        4. Estilos da Seção Hero (Início)
-        ========================================
-        */
-        .hero-section {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 0;
-            background-color: var(--secondary-color);
-            transition: background-color 0.3s ease;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .profile-pic {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-color);
-            box-shadow: 0 0 25px var(--shadow-color);
-            transition: transform 0.3s ease-in-out, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-section h1 {
-            font-size: var(--font-size-2xl);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 2rem;
-        }
-
-        .hero-section .subtitle {
-            font-size: var(--font-size-lg);
-            font-weight: 600;
-            margin-top: 1rem;
-            color: var(--text-color-dark);
-            max-width: 600px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--text-color-light);
-        }
-
-        .btn-primary:hover {
-            background-color: #2563EB; 
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-            color: var(--text-color-light);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
-        }
-
-        /*
-        ========================================
-        5. Estilos das Seções
-        ========================================
-        */
+        /* ========================================
+           2. Efeito de Foco (Scroll Imersivo)
+        ======================================== */
         section {
-            padding: 6rem 0;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
+            opacity: 0.2;
+            transform: scale(0.95);
+            filter: blur(3px);
+            transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+        }
+
+        section.in-view {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
         }
 
         section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
             text-align: center;
-            font-size: var(--font-size-xl);
             margin-bottom: 3rem;
-            color: var(--primary-color);
+            position: relative;
         }
 
-        .about-section {
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease;
+        section h2::after {
+            content: ''; display: block; width: 80px; height: 5px;
+            background: var(--primary); margin: 0.8rem auto 0;
+            border-radius: 4px;
         }
 
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: var(--font-size-lg);
-        }
-
-        /*
-        ========================================
-        6. Estilos da Seção de Habilidades
-        ========================================
-        */
-        .skills-section {
-            background-color: var(--secondary-color);
-            transition: background-color 0.3s ease;
+        /* ========================================
+           3. Header & Nav
+        ======================================== */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(var(--bg-card), 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
         }
         
-        .skills-grid {
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-weight: 500; font-size: 1rem; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+        .theme-btn, .nav-toggle { 
+            background: none; border: none; font-size: 1.3rem; 
+            color: var(--text-main); cursor: pointer; transition: 0.3s;
+        }
+        .theme-btn:hover { color: var(--primary); transform: rotate(15deg); }
+
+        /* ========================================
+           4. Hero Section
+        ======================================== */
+        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        
+        .profile-pic {
+            width: clamp(150px, 20vw, 220px);
+            height: clamp(150px, 20vw, 220px);
+            border-radius: 50%;
+            object-fit: cover; border: 4px solid var(--bg-card);
+            box-shadow: var(--shadow-deep); margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--primary); }
+        .subtitle { font-size: clamp(1rem, 2vw, 1.5rem); color: var(--secondary); margin-bottom: 2.5rem; }
+        
+        .btn {
+            display: inline-block; padding: 1rem 2.5rem; border-radius: 50px;
+            font-weight: 600; margin: 0.5rem; font-size: 1.1rem;
+        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
+        .btn-secondary { border: 2px solid var(--border); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        /* ========================================
+           5. Grid System (Habilidades)
+        ======================================== */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
         }
-        
-        .skill-card {
-            background-color: var(--background-color);
+
+        .card {
+            background: var(--bg-card);
             padding: 2.5rem;
             border-radius: 1.5rem;
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
-            text-align: center;
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            transition: var(--transition);
         }
         
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px var(--shadow-color);
-        }
-        
-        .skill-card h3 {
-            font-size: var(--font-size-lg);
-            margin-bottom: 0.75rem;
-            color: var(--primary-color);
-        }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: var(--shadow-deep); }
+        .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.2rem; }
+        .card h3 { margin-bottom: 0.8rem; font-size: 1.4rem; }
+        .card p { color: var(--secondary); font-size: 1rem; line-height: 1.6; }
+        .card-link { display: inline-block; margin-top: 1.5rem; color: var(--primary); font-weight: 700; }
 
-        /*
-        ========================================
-        7. Estilos do Carrossel de Certificados
-        ========================================
-        */
-        .certifications-section {
-            text-align: center;
-            padding: 6rem 0;
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease;
-        }
-
-        .certificate-carousel {
+        /* ========================================
+           6. SEÇÃO CERTIFICADOS & CURSOS
+        ======================================== */
+        .carousel-container {
             position: relative;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem 0;
             overflow: hidden;
-            width: 100%; /* Garante que não estoure */
+            padding: 2rem 0;
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .certificate-card {
-            flex-shrink: 0;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 1rem; 
-            background: var(--card-background);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            text-align: left;
-            transition: all 0.3s ease;
-            transform: scale(0.9);
-            opacity: 0.7; 
-        }
-
-        .certificate-card.active {
-            transform: scale(1);
-            opacity: 1;
-            box-shadow: 0 10px 20px var(--shadow-color);
-        }
-        
-        .certificate-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+        .carousel-card {
+            min-width: 100%;
+            padding: 4rem 2rem;
+            background: linear-gradient(145deg, var(--bg-card), rgba(255,255,255,0.05));
+            border-radius: 2rem;
+            box-shadow: var(--shadow-deep);
+            border: 1px solid var(--border);
             text-align: center;
-        }
-        
-        .certificate-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-color-dark);
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        
-        .certificate-institution {
-            font-size: 1rem;
-            color: #6B7280;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .certificate-skills {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            justify-content: center;
-        }
-        
-        .skill-tag {
-            background-color: #E5E7EB;
-            color: #4B5563;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        
-        body.dark-mode .skill-tag {
-            background-color: #374151;
-            color: #D1D5DB;
-        }
-        
-        .certificate-link {
-            display: block;
-            text-align: center;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .certificate-link:hover {
-            color: #2563EB;
-        }
-        
-        .certificate-link i {
-            margin-left: 0.5rem;
-        }
-        
-        .carousel-controls {
-            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
+        }
+
+        .carousel-card i { 
+            font-size: 5rem;
+            color: var(--primary); 
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(37, 99, 235, 0.3));
+        }
+
+        .carousel-card h3 { 
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-card p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn-certificate {
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .btn-certificate:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
         }
         
         .nav-btn {
-            background-color: var(--primary-color);
-            color: var(--text-color-light);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: var(--bg-body); border: 2px solid var(--border);
+            width: 50px; height: 50px; border-radius: 50%;
+            cursor: pointer; z-index: 10; color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            box-shadow: var(--shadow-soft);
         }
-        
-        .nav-btn:hover {
-            background-color: #2563EB;
-            transform: scale(1.1);
-        }
-        
-        .nav-btn:disabled {
-            background-color: #9CA3AF;
-            cursor: not-allowed;
-        }
-        
-        .carousel-indicators {
-            display: flex;
-            gap: 0.75rem;
-        }
-        
-        .indicator {
-            width: 10px;
-            height: 10px;
-            background-color: #D1D5DB;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .indicator.active {
-            background-color: var(--primary-color);
-            transform: scale(1.2);
-        }
+        .nav-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-50%) scale(1.1); }
+        .prev { left: 10px; }
+        .next { right: 10px; }
 
-        /*
-        ========================================
-        8. Estilos da Seção de Projetos
-        ========================================
-        */
-        .projects-section {
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease;
+        .indicators {
+            display: flex; justify-content: center; gap: 12px; margin-top: 2rem;
         }
+        .dot {
+            width: 12px; height: 12px; background: var(--border);
+            border-radius: 50%; cursor: pointer; transition: 0.3s;
+        }
+        .dot.active { background: var(--primary); transform: scale(1.4); }
 
-        .projects-grid {
+        /* ========================================
+           7. Projetos (Grande & Profissional)
+        ======================================== */
+        .grid-projects {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 2.5rem;
         }
-
         .project-card {
-            background-color: var(--secondary-color);
-            padding: 2.5rem;
+            background: var(--bg-card);
+            padding: 3.5rem;
             border-radius: 2rem;
-            box-shadow: 0 10px 15px -3px var(--shadow-color);
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex; flex-direction: column;
+            min-height: 450px;
         }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px var(--shadow-color);
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem; 
-            margin-bottom: 0.75rem;
-            color: var(--primary-color);
-        }
-
-        .project-card p {
-            margin-bottom: 1.25rem;
-            color: var(--text-color-dark);
-        }
-
-        .project-card a {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary-color);
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .project-card a:hover {
-            color: #2563EB;
-            border-color: #2563EB;
-        }
-
-        /*
-        ========================================
-        9. Estilos da Seção de Contato
-        ========================================
-        */
-        .contact-section {
-            background-color: var(--secondary-color);
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-section p {
-            font-size: var(--font-size-base);
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-buttons-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.875rem 2rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: var(--text-color-light);
-            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-        }
-
-        .contact-btn i {
-            margin-right: 0.75rem;
-            font-size: 1.25rem;
-        }
-
-        .contact-btn.whatsapp {
-            background-color: #25D366;
-        }
-        .contact-btn.whatsapp:hover {
-            background-color: #128C7E;
-            transform: translateY(-2px);
-        }
-
-        .contact-btn.gmail {
-            background-color: #EA4335;
-        }
-        .contact-btn.gmail:hover {
-            background-color: #C1352A;
-            transform: translateY(-2px);
-        }
-
-        .contact-btn.linkedin {
-            background-color: #0A66C2;
-        }
-        .contact-btn.linkedin:hover {
-            background-color: #004182;
-            transform: translateY(-2px);
-        }
-
-        /*
-        ========================================
-        10. Estilos do Footer
-        ========================================
-        */
-        .footer {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: var(--text-color-dark);
-            color: var(--secondary-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .footer p {
-            font-size: 0.875rem;
-        }
-
-        /*
-        ========================================
-        11. Estilos da Seção de Carta de Recomendação
-        ========================================
-        */
-        .recommendation-section {
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease;
-        }
-
-        .pdf-container {
-            max-width: 800px; 
-            margin: 0 auto;
-            border: 2px solid var(--border-color);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            aspect-ratio: 1 / 1.414; 
-        }
+        .project-card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: var(--shadow-deep); }
         
-        .pdf-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .project-card i.main-icon { 
+            font-size: 1.5rem; color: var(--secondary); 
+            margin-bottom: 2rem; opacity: 0.6;
+        }
+        .project-card h3 { font-size: 1.8rem; margin-bottom: 1.2rem; font-weight: 700; }
+        .project-card p { font-size: 1.1rem; color: var(--secondary); line-height: 1.7; margin-bottom: 2.5rem; }
+        
+        .card-link { 
+            margin-top: auto; font-weight: 700; color: var(--primary); 
+            display: flex; align-items: center; gap: 0.6rem; 
         }
 
-        /*
-        ========================================
-        12. Responsividade
-        ========================================
-        */
-        @media (max-width: 768px) {
-            /* Ajuste no padding para mobile */
-            section {
-                padding: 3.5rem 0;
-            }
-            .hero-section {
-                padding: 3rem 0;
-            }
+        /* ========================================
+           8. PDF e Footer
+        ======================================== */
+        .pdf-wrapper {
+            height: clamp(400px, 60vh, 700px);
+            border-radius: 1.5rem; overflow: hidden;
+            border: 1px solid var(--border); background: var(--bg-card);
+            box-shadow: var(--shadow-deep);
+        }
+        iframe { width: 100%; height: 100%; border: none; }
 
-            /* Lógica do Menu Hamburger */
-            .nav-toggle {
-                display: flex; /* Mostra o botão hamburger */
-            }
+        footer { text-align: center; padding: 3rem 1rem; color: var(--secondary); border-top: 1px solid var(--border); margin-top: 2rem;}
 
+        /* ========================================
+           9. Mobile Responsivo Avançado
+        ======================================== */
+        .nav-toggle { display: none; }
+
+        @media (max-width: 900px) {
+            .nav-toggle { display: block; z-index: 1100; }
             .nav-links {
-                /* Constrói o menu dropdown */
-                flex-direction: column;
-                gap: 1.5rem;
-                width: 100%;
-                order: 3; /* Coloca abaixo do logo e botões */
-                text-align: center;
-                padding: 0;
-                
-                /* Lógica para esconder/mostrar */
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
-                
-                /* Estilo do container do menu */
-                background-color: var(--background-color);
-                border-top: 1px solid var(--border-color);
-                position: absolute;
-                top: 100%; /* 100% da altura do header */
-                left: 0;
-                right: 0;
-                box-shadow: 0 10px 15px -3px var(--shadow-color);
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 85%;
+                background: var(--bg-card); flex-direction: column;
+                justify-content: center; align-items: center;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
             }
-            
-            /* Estado ativo do menu (mostrando) */
-            .nav-links.active {
-                max-height: 50vh; /* Altura máxima visível */
-                padding: 2rem 0; /* Padding quando visível */
-            }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 1.5rem 0; font-size: 1.2rem; }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+            section { min-height: auto; padding: 5rem 0; } 
+            .carousel-card { padding: 3rem 1.5rem; }
+            .carousel-card i { font-size: 4rem; }
+            .nav-btn { width: 40px; height: 40px; background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); }
 
-            .contact-buttons-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            /* Ajuste do Carrossel no Mobile */
-            .certificate-card {
-                /* O card deve ocupar quase toda a tela, com pequenas margens */
-                max-width: calc(100% - 2rem); 
-                margin: 0 1rem;
-            }
-
-            .pdf-container {
-                max-width: 100%;
-                height: 500px; 
-                aspect-ratio: auto;
-            }
+            /* Ajuste para o grid de projetos em telas pequenas */
+            .grid-projects { grid-template-columns: 1fr; }
+            .project-card { padding: 2.5rem; min-height: auto; }
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#inicio" class="logo"> Eduardo Holanda</a>
-                
-                <!-- Agrupador de Toggles (Tema e Menu) -->
-                <div class="nav-toggles">
-                    <button id="theme-toggle" class="theme-toggle-btn">
-                        <span id="theme-icon">🌙</span>
-                    </button>
-                    <!-- Botão Hamburger (Novo) -->
-                    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-
-                <!-- Links de Navegação (Agora controlados pelo JS no mobile) -->
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#sobre">Sobre Mim</a></li>
-                    <li><a href="#certificados">Certificados</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#recomendacao">Recomendação</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </nav>
+        <div class="container nav">
+            <a href="#inicio" class="logo">Eduardo<span style="color:var(--primary)">.</span></a>
+            <div class="nav-actions">
+                <button class="theme-btn" id="theme-toggle" aria-label="Alterar Tema"><i class="fas fa-moon"></i></button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#certificados">Certificados</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </div>
     </header>
 
     <main>
-        <!-- Seção Principal (Hero) com foto de perfil -->
-        <section id="inicio" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <img src="./assets/foto_portfolio.png" alt="Foto de Perfil" class="profile-pic">
-                    <h1>Olá, sou Eduardo Holanda.</h1>
-                    <p class="subtitle">Desenvolvedor Web, Cientista de Dados e Especialista em Automação.</p>
-                    <div class="cta-buttons">
-                        <a href="#contato" class="btn btn-primary">Vamos Conversar</a>
-                        <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
-                    </div>
+        <section id="inicio" class="hero">
+            <div class="container hero-content">
+                <img src="./assets/foto_portfolio.png" alt="Eduardo" class="profile-pic">
+                <h1>Olá, sou <span>Eduardo Holanda</span></h1>
+                <p class="subtitle">Dev Web, Dados & Automação</p>
+                <div>
+                    <a href="#projetos" class="btn btn-primary">Meus Projetos</a>
+                    <a href="#contato" class="btn btn-secondary">Fale Comigo</a>
                 </div>
             </div>
         </section>
 
-        <!-- Seção "Sobre Mim" -->
-        <section id="sobre" class="about-section">
+        <section id="sobre">
             <div class="container">
                 <h2>Sobre Mim</h2>
-                <p>
-                    Sou um desenvolvedor web apaixonado por criar soluções digitais inovadoras, um cientista de dados dedicado a transformar dados em insights valiosos e um especialista em automação focado em otimizar processos para aumentar a eficiência. Com uma combinação única de habilidades técnicas e criatividade, estou sempre em busca de novos desafios que me permitam crescer e contribuir para projetos significativos.
-                    <br><br>
-                    Estou <strong>aberto a projetos</strong> e a novas oportunidades de colaboração. Seja na criação de sites modernos, na análise de dados complexos ou na automação de processos para otimizar o fluxo de trabalho, estou pronto para transformar suas ideias em realidade.
-                </p>
+                <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
+                    <p style="font-size: clamp(1rem, 2vw, 1.25rem); max-width: 800px; margin: 0 auto; color: var(--secondary);">
+                        Sou apaixonado por transformar dados complexos em soluções digitais simples e eficientes. Com experiência em Ciência de Dados e Automação, combino lógica analítica com criatividade no Desenvolvimento Web para criar produtos que não só funcionam bem, mas encantam o usuário.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Seção de Certificados com carrossel interativo -->
-        <section id="certificados" class="certifications-section">
+        <section id="habilidades">
+            <div class="container">
+                <h2>Minhas Habilidades</h2>
+                <div class="grid">
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>HTML, CSS, JS e Design Responsivo para criar interfaces modernas.</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-database"></i>
+                        <h3>Data Science</h3>
+                        <p>Python, SQL, Pandas e Analytics para tomada de decisão.</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-robot"></i>
+                        <h3>Automação</h3>
+                        <p>Criação de robôs (RPA) e scripts para otimizar processos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificados">
             <div class="container">
                 <h2>Certificados & Cursos</h2>
-                <div class="certificate-carousel">
-                    <div class="carousel-track" id="carousel-track">
-                        <!-- Cards dos certificados -->
-                        <div class="certificate-card">
-                            <div class="certificate-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h4 class="certificate-title">Ciência de Dados</h4>
-                            <p class="certificate-institution">UECE</p>
-                            <div class="certificate-skills">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">SQL</span>
-                                <span class="skill-tag">Análise de Dados</span>
-                            </div>
-                            <!-- Caminho do arquivo de exemplo -->
-                            <a href="/assets/certificates/Programa_Residencia_Tic-20_480hrs.pdf" class="certificate-link" target="_blank">
-                                Ver Certificado <i class="fas fa-external-link-alt"></i>
-                            </a>
+                
+                <div class="carousel-container">
+                    <button class="nav-btn prev" id="prevBtn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    
+                    <div class="carousel-track" id="track">
+                        <div class="carousel-card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Ciência de Dados - UECE</h3>
+                            <p>Residência tecnológica intensiva de 480hrs.</p>
+                            <a href="/assets/certificates/Programa_Residencia_Tic-20_480hrs.pdf" target="_blank" class="btn-certificate">Visualizar Certificado</a>
                         </div>
-                        <div class="certificate-card">
-                            <div class="certificate-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h4 class="certificate-title">Bootcamp Microsoft AI for Tech</h4>
-                            <p class="certificate-institution">DIO</p>
-                            <div class="certificate-skills">
-                                <span class="skill-tag">GitHub Copilot</span>
-                                <span class="skill-tag">Inteligência Artificial</span>
-                                <span class="skill-tag">Desenvolvimento</span>
-                            </div>
-                            <a href="/assets/certificates/bootcamp_microsoft_ai.pdf" class="certificate-link" target="_blank">
-                                Ver Certificado <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <div class="carousel-card">
+                            <i class="fab fa-microsoft"></i>
+                            <h3>Microsoft AI for Tech</h3>
+                            <p>Especialização em Inteligência Artificial e Azure.</p>
+                            <a href="/assets/certificates/bootcamp_microsoft_ai.pdf" target="_blank" class="btn-certificate">Visualizar Certificado</a>
                         </div>
-                        <div class="certificate-card">
-                            <div class="certificate-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <h4 class="certificate-title">Decola Tech 2024 Avanade</h4>
-                            <p class="certificate-institution">DIO</p>
-                            <div class="certificate-skills">
-                                <span class="skill-tag">Inovação</span>
-                                <span class="skill-tag">Tecnologia</span>
-                                <span class="skill-tag">Web</span>
-                            </div>
-                            <a href="/assets/certificates/decola_tech.pdf" class="certificate-link" target="_blank">
-                                Ver Certificado <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <div class="carousel-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Decola Tech - Avanade</h3>
+                            <p>Desenvolvimento .NET e C# Moderno.</p>
+                            <a href="/assets/certificates/decola_tech.pdf" target="_blank" class="btn-certificate">Visualizar Certificado</a>
                         </div>
-                        <div class="certificate-card">
-                            <div class="certificate-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <h4 class="certificate-title">A Emoção como Alicerce</h4>
-                            <p class="certificate-institution">Minicurso</p>
-                            <div class="certificate-skills">
-                                <span class="skill-tag">Soft Skills</span>
-                                <span class="skill-tag">Liderança</span>
-                                <span class="skill-tag">Comunicação</span>
-                            </div>
-                            <a href="/assets/certificates/emocao_como_alicerce.pdf" class="certificate-link" target="_blank">
-                                Ver Certificado <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <div class="carousel-card">
+                            <i class="fas fa-brain"></i>
+                            <h3>Inteligência Emocional</h3>
+                            <p>Soft skills e liderança.</p>
+                            <a href="/assets/certificates/emocao_como_alicerce.pdf" target="_blank" class="btn-certificate">Visualizar Certificado</a>
                         </div>
                     </div>
-                    <div class="carousel-controls">
-                        <button class="nav-btn" id="prevBtn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                        <div class="carousel-indicators" id="carousel-indicators" role="tablist"></div>
-                        <button class="nav-btn" id="nextBtn" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
-                    </div>
+
+                    <button class="nav-btn next" id="nextBtn" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+                    
+                    <div class="indicators" id="indicators">
+                        </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Habilidades -->
-        <section id="habilidades" class="skills-section">
-            <div class="container">
-                <h2>Habilidades</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <h3>Desenvolvimento Web</h3>
-                        <p>Construção de sites e aplicações interativas e responsivas, com foco em experiência do usuário e performance.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Ciência de Dados</h3>
-                        <p>Análise de dados para extrair insights valiosos, criação de modelos preditivos e visualizações complexas.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Automação</h3>
-                        <p>Desenvolvimento de scripts para automatizar tarefas repetitivas em planilhas e sistemas, aumentando a eficiência.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Carta de Recomendação com PDF Embutido -->
-        <section id="recomendacao" class="recommendation-section">
+        <section id="recomendacao">
             <div class="container">
                 <h2>Carta de Recomendação</h2>
-                <div class="pdf-container">
-                    <!--
-                        ATENÇÃO: Este é um URL de exemplo. Por favor, substitua
-                        '/assets/documents/recomendacao.pdf' pelo caminho real
-                        do seu arquivo PDF.
-                    -->
-                    <iframe src="/assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" class="pdf-frame" title="Carta de Recomendação PDF">
-                        <p>Seu navegador não suporta a visualização de PDFs. Você pode <a href="/assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf" target="_blank">clicar aqui para baixar o PDF</a>.</p>
-                    </iframe>
+                <div class="pdf-wrapper">
+                    <iframe src="/assets/certificates/Carta_de_Recomendacao___Eduardo_Holanda_Jacinto_assinado-.pdf"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Projetos -->
-        <section id="projetos" class="projects-section">
+        <section id="projetos">
             <div class="container">
-                <h2>Meus Principais Projetos</h2>
-                <div class="projects-grid">
+                <h2>Projetos em Destaque</h2>
+                <div class="grid-projects">
                     <div class="project-card">
-                        <h3>Site Loja de Buquês</h3>
-                        <p>Desenvolvimento de um site de e-commerce completo para uma loja de buquês, com foco em um design visualmente atraente e uma experiência de compra intuitiva.</p>
-                        <a href="https://cordapaixao.github.io/" target="_blank">Ver Projeto</a>
+                        <i class="fas fa-leaf main-icon"></i>
+                        <h3>Floricultura Online</h3>
+                        <p>E-commerce completo com interface intuitiva e Checkout otimizado para conversão máxima.</p>
+                        <a href="https://cordapaixao.github.io/" target="_blank" class="card-link">Acessar Projeto <i class="fas fa-external-link-alt"></i></a>
                     </div>
                     <div class="project-card">
-                        <h3>Site HM Soluções</h3>
-                        <p>Criação de um site institucional para a empresa fictícia "HM Soluções". O projeto incluiu o design, a estrutura e o conteúdo, demonstrando minhas habilidades em web design e front-end.</p>
-                        <a href="https://talduardo.github.io/hmsolucoes/" target="_blank">Ver Projeto</a>
+                        <i class="fas fa-shield-halved main-icon"></i>
+                        <h3>Pares Xiter</h3>
+                        <p>Landing Page agressiva e moderna para venda de softwares especializados, com foco em performance e design gamer.</p>
+                        <a href="https://paresxiter.github.io/" target="_blank" class="card-link">Acessar Site <i class="fas fa-external-link-alt"></i></a>
                     </div>
                     <div class="project-card">
-                        <h3>Automação de Resumos Contábeis com LLMs</h3>
-                        <p>Implementação de um sistema de automação para uma empresa, utilizando modelos de linguagem (LLMs) para analisar e gerar resumos contábeis de forma eficiente. Este projeto demonstra proficiência em ciência de dados e automação de processos.</p>
-                        <a href="https://github.com/Talduardo/Projeto-llms" target="_blank">Ver Projeto</a>
+                        <i class="fas fa-briefcase main-icon"></i>
+                        <h3>HM Soluções</h3>
+                        <p>Plataforma institucional corporativa que reflete autoridade e agilidade no atendimento ao cliente.</p>
+                        <a href="https://talduardo.github.io/hmsolucoes/" target="_blank" class="card-link">Acessar Projeto <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-card">
+                        <i class="fas fa-brain main-icon"></i>
+                        <h3>Automação LLM</h3>
+                        <p>Integração de modelos de linguagem para leitura automatizada e geração de sumários para relatórios fiscais.</p>
+                        <a href="https://github.com/Talduardo/Projeto-llms" target="_blank" class="card-link">GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Contato -->
-        <section id="contato" class="contact-section">
-            <div class="container">
-                <h2>Contato</h2>
-                <p>Estou sempre disponível para novos projetos, colaborações e para responder às suas perguntas. Vamos conversar!</p>
-                <div class="contact-buttons-container">
-                    <a href="https://api.whatsapp.com/send/?phone=%2B5588993744991&text=Ol%C3%A1%21+Visitei+um+site+criado+por+voc%C3%AA+e+queria+falar+mais+com+voc%C3%AA&type=phone_number&app_absent=0" target="_blank" class="contact-btn whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="mailto:eholanda60@gmail.com" class="contact-btn gmail">
-                        <i class="fa-solid fa-envelope"></i> Gmail
-                    </a>
-                    <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/" target="_blank" class="contact-btn linkedin">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
-                    </a>
+        <section id="contato">
+            <div class="container" style="text-align: center;">
+                <h2>Vamos Conversar?</h2>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B5588993744991" class="btn btn-primary" style="background:#25D366"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/" class="btn btn-primary" style="background:#0077b5"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="mailto:eholanda60@gmail.com" class="btn btn-primary" style="background:#EA4335"><i class="fas fa-envelope"></i> Email</a>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Eduardo Holanda. Todos os direitos reservados.</p>
-        </div>
+    <footer>
+        <p>&copy; 2025 Eduardo Holanda. Desenvolvido com foco.</p>
     </footer>
 
     <script>
-        // ===========================================
-        // Lógica do Modo Escuro
-        // ===========================================
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-        const localStorageKey = 'theme';
-
-        const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                body.classList.add('dark-mode');
-                themeIcon.textContent = '☀️';
-            } else {
-                body.classList.remove('dark-mode');
-                themeIcon.textContent = '🌙';
-            }
-        };
-
-        const savedTheme = localStorage.getItem(localStorageKey);
-        if (savedTheme) {
-            applyTheme(savedTheme);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                applyTheme('light');
-                localStorage.setItem(localStorageKey, 'light');
-            } else {
-                applyTheme('dark');
-                localStorage.setItem(localStorageKey, 'dark');
-            }
-        });
-
-        // ===========================================
-        // Lógica do Menu Hamburger (Novo)
-        // ===========================================
+        // 1. Menu Mobile
         const navToggle = document.getElementById('nav-toggle');
         const navLinks = document.getElementById('nav-links');
         
-        if (navToggle) {
-            const navIcon = navToggle.querySelector('i');
-            
-            navToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                const isActive = navLinks.classList.contains('active');
-                navToggle.setAttribute('aria-expanded', isActive);
-                
-                // Muda o ícone
-                if (isActive) {
-                    navIcon.classList.remove('fa-bars');
-                    navIcon.classList.add('fa-times');
-                } else {
-                    navIcon.classList.remove('fa-times');
-                    navIcon.classList.add('fa-bars');
-                }
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            if(navLinks.classList.contains('active')){
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fecha menu ao clicar em link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                navToggle.querySelector('i').classList.remove('fa-times');
+                navToggle.querySelector('i').classList.add('fa-bars');
             });
-            
-            // Fecha o menu ao clicar em um link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        navToggle.setAttribute('aria-expanded', false);
-                        navIcon.classList.remove('fa-times');
-                        navIcon.classList.add('fa-bars');
-                    }
-                });
-            });
+        });
+
+        // 2. Tema Dark/Light
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Carrega tema salvo
+        if(localStorage.getItem('theme') === 'dark'){
+            body.classList.add('dark-mode');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
         }
 
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
+            
+            if(body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
 
-        // ===========================================
-        // Lógica do Carrossel de Certificados
-        // ===========================================
-        class CertificateCarousel {
+        // 3. Efeito de Foco nas Seções (Otimizado)
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.2 // Reduzido para ser mais responsivo no mobile
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(sec => observer.observe(sec));
+
+        // 4. Lógica do Carrossel (Robustez de Redimensionamento)
+        class Carousel {
             constructor() {
-                this.track = document.getElementById('carousel-track');
-                if (!this.track) return; // Não executa se o carrossel não existir
-                
-                this.cards = Array.from(this.track.children);
-                this.prevBtn = document.getElementById('prevBtn');
+                this.track = document.getElementById('track');
+                this.cards = document.querySelectorAll('.carousel-card');
                 this.nextBtn = document.getElementById('nextBtn');
-                this.indicatorsContainer = document.getElementById('carousel-indicators');
-
-                this.currentIndex = 0;
+                this.prevBtn = document.getElementById('prevBtn');
+                this.indicatorsContainer = document.getElementById('indicators');
+                this.index = 0;
                 this.autoPlayInterval = null;
-                this.autoPlayTime = 4000;
-                this.cardWidth = 0; // Será calculado dinamicamente
-                this.resizeTimeout = null; // Para debounce do resize
 
-                this.init();
+                if(this.cards.length > 0) this.init();
             }
 
             init() {
-                if (this.cards.length === 0) return; // Não faz nada se não houver cards
+                // Criar indicadores
+                this.indicatorsContainer.innerHTML = ''; // Limpa anteriores
+                this.cards.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        this.index = i;
+                        this.update();
+                        this.resetAutoPlay();
+                    });
+                    this.indicatorsContainer.appendChild(dot);
+                });
+
+                this.nextBtn.addEventListener('click', () => {
+                    this.next();
+                    this.resetAutoPlay();
+                });
+
+                this.prevBtn.addEventListener('click', () => {
+                    this.prev();
+                    this.resetAutoPlay();
+                });
+
+                // Responsividade - Recalcula largura ao redimensionar
+                window.addEventListener('resize', () => {
+                    this.update();
+                });
                 
-                this.createIndicators();
-                this._updateCardWidth(); // Calcula a largura inicial
-                this.bindEvents();
                 this.startAutoPlay();
             }
 
-            createIndicators() {
-                this.cards.forEach((_, index) => {
-                    const indicator = document.createElement('div');
-                    indicator.classList.add('indicator');
-                    indicator.setAttribute('role', 'tab');
-                    indicator.setAttribute('aria-controls', `certificate-${index}`);
-                    indicator.addEventListener('click', () => this.goToSlide(index));
-                    this.indicatorsContainer.appendChild(indicator);
-                });
-                this.indicators = Array.from(this.indicatorsContainer.children);
-                // Define o primeiro indicador como ativo
-                if (this.indicators.length > 0) {
-                    this.indicators[0].classList.add('active');
-                    this.indicators[0].setAttribute('aria-selected', true);
-                }
-            }
-
-            bindEvents() {
-                this.prevBtn.addEventListener('click', () => this.prevSlide());
-                this.nextBtn.addEventListener('click', () => this.nextSlide());
+            update() {
+                // Usa offsetWidth para precisão exata do container visível
+                const containerWidth = this.track.parentElement.offsetWidth;
+                this.track.style.transform = `translateX(-${this.index * containerWidth}px)`;
                 
-                // Listener de redimensionamento (Novo)
-                window.addEventListener('resize', () => this._updateCardWidth());
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') this.prevSlide();
-                    if (e.key === 'ArrowRight') this.nextSlide();
-                });
-
-                const carouselContainer = this.track.closest('.certificate-carousel');
-                carouselContainer.addEventListener('mouseenter', () => this.stopAutoPlay());
-                carouselContainer.addEventListener('mouseleave', () => this.startAutoPlay());
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach(d => d.classList.remove('active'));
+                if(dots[this.index]) dots[this.index].classList.add('active');
             }
 
-            // (Novo) Calcula a largura do card dinamicamente
-             _updateCardWidth() {
-                if (this.resizeTimeout) {
-                    clearTimeout(this.resizeTimeout);
-                }
-                
-                // Debounce para performance
-                this.resizeTimeout = setTimeout(() => {
-                    if (this.cards.length === 0) return;
-                    const cardStyle = getComputedStyle(this.cards[0]);
-                    const cardMargin = parseFloat(cardStyle.marginLeft) + parseFloat(cardStyle.marginRight);
-                    this.cardWidth = this.cards[0].offsetWidth + cardMargin;
-                    
-                    this.updateUI(true); // 'true' para indicar redimensionamento
-                }, 150);
+            next() {
+                this.index = (this.index + 1) % this.cards.length;
+                this.update();
             }
 
-            prevSlide() {
-                this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.cards.length - 1;
-                this.updateUI();
-                this.startAutoPlay(); 
-            }
-
-            nextSlide() {
-                this.currentIndex = (this.currentIndex < this.cards.length - 1) ? this.currentIndex + 1 : 0;
-                this.updateUI();
-                this.startAutoPlay(); 
-            }
-
-            goToSlide(index) {
-                this.currentIndex = index;
-                this.updateUI();
-                this.startAutoPlay(); 
-            }
-
-            updateUI(isResizing = false) {
-                if (this.cardWidth === 0) return; // Aborta se a largura não foi definida
-
-                const offset = -this.currentIndex * this.cardWidth;
-
-                // Desabilita transição durante resize
-                if (isResizing) {
-                    this.track.style.transition = 'none';
-                }
-            
-                this.track.style.transform = `translateX(${offset}px)`;
-
-                // Re-habilita transição após o 'pulo' do resize
-                if (isResizing) {
-                    // requestAnimationFrame garante que o 'none' foi aplicado
-                    requestAnimationFrame(() => {
-                        this.track.style.transition = 'transform 0.5s ease-in-out';
-                    });
-                }
-
-                this.cards.forEach((card, index) => {
-                    card.classList.toggle('active', index === this.currentIndex);
-                });
-
-                if (this.indicators) {
-                    this.indicators.forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === this.currentIndex);
-                        indicator.setAttribute('aria-selected', index === this.currentIndex);
-                    });
-                }
+            prev() {
+                this.index = (this.index - 1 + this.cards.length) % this.cards.length;
+                this.update();
             }
 
             startAutoPlay() {
-                this.stopAutoPlay();
-                this.autoPlayInterval = setInterval(() => {
-                    this.nextSlide();
-                }, this.autoPlayTime);
+                clearInterval(this.autoPlayInterval);
+                this.autoPlayInterval = setInterval(() => this.next(), 5000); // 5 segundos
             }
 
-            stopAutoPlay() {
+            resetAutoPlay() {
                 clearInterval(this.autoPlayInterval);
+                this.startAutoPlay();
             }
         }
 
-        // Garante que o DOM está carregado antes de instanciar
         document.addEventListener('DOMContentLoaded', () => {
-            new CertificateCarousel();
+            new Carousel();
         });
     </script>
-
 </body>
 </html>
-
