@@ -80,7 +80,7 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 1000;
+    z-index: 20001;
     padding: 0 5%;
     height: 72px;
     display: flex;
@@ -767,16 +767,115 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-  /* ── MOBILE E MEDIA QUERIES ── */
+/* ── MOBILE: REORGANIZAÇÃO COMPLETA E DESIGN PREMIUM ── */
 @media (max-width: 768px) {
-  .hero-stats { position: static; transform: none; flex-direction: row; flex-wrap: wrap; margin-top: 48px; }
-  section { padding: 70px 6%; }
-  nav { padding: 0 6%; z-index: 1000; } /* Nav fica em 1000 */
-  .nav-links { display: none; }
-  .hero-name { font-size: 2.8rem; }
+  
+  /* 1. AJUSTE DE SEÇÃO E FLUXO */
+  section { padding: 80px 5% 40px; }
+  
+  #hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  /* Faz o container interno permitir a reordenação dos itens */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* 2. REORDENAÇÃO VISUAL (Hieraquia solicitada) */
+  .hero-badge { order: 0; margin-bottom: 1rem; } /* Selo no topo */
+  
+  .hero-name { 
+    order: 1; 
+    font-size: 2.2rem; 
+    margin-bottom: 0.5rem; 
+    z-index: 10002;
+    position: relative;
+  }
+
+  .hero-desc { 
+    order: 2; 
+    font-size: 1rem; 
+    color: var(--gold); /* Subtítulo em destaque */
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+    z-index: 10002;
+    position: relative;
+  }
+
+  /* 3. OS 3 CARDS: LADO A LADO E IGUAIS */
+  .hero-stats {
+    order: 3; /* Abaixo do subtítulo */
+    position: relative;
+    z-index: 10005; /* Garante que fique acima de qualquer fundo/ruído */
+    display: flex;
+    flex-direction: row;      /* Lado a lado */
+    justify-content: center;
+    gap: 8px;                 /* Espaçamento sutil entre eles */
+    width: 100%;
+    margin-top: 3rem;      /* Espaço após os botões */
+    margin-bottom: 2rem;    /* Espaço antes dos botões */
+    transform: none;          /* Reseta posição do desktop */
+    top: auto; right: auto; left: auto;
+  }
+
+  .stat-card {
+    flex: 1;                  /* Divide o espaço da tela em 3 partes iguais */
+    min-width: 0;             /* Evita quebra de layout em telas pequenas */
+    padding: 12px 5px;
+    background: rgba(13, 20, 33, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  /* Ajuste de fontes internas dos cards */
+  .stat-num { 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    color: var(--gold); 
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label { 
+    font-size: 0.5rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-top: 5px;
+  }
+
+  /* 4. BOTÕES CTA */
+  .hero-cta {
+    order: 4; /* Abaixo dos cards */
+    display: flex;
+    flex-direction: column; /* Empilhados no mobile para melhor clique */
+    gap: 12px;
+    width: 100%;
+    z-index: 10010;
+    margin-bottom: 0;
+  }
+
+  .hero-cta a { 
+    width: 100%; 
+    justify-content: center;
+    padding: 16px; /* Botões mais altos para touch */
+  }
   
   /* Garante que o botão apareça no mobile */
+
   .hamburger { display: flex !important; }
+  
 }
 
 /* ── BOTÃO HAMBURGER (ACIMA DE TUDO) ── */
@@ -839,7 +938,7 @@
 .mobile-menu.open {
   opacity: 1;
   visibility: visible;
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 /* Ajuste no efeito de ruído (Noise) para não bloquear o menu */
@@ -890,10 +989,25 @@ body::before {
   @keyframes slideIn { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
 
   @media (max-width: 768px) {
-    .hamburger { display: flex; }
-    .nav-btn-linkedin { display: none; }
-    .mobile-menu { visibility: hidden;}
+  /* 1. ESCONDE os links do desktop para dar espaço ao hamburger */
+  .nav-links { 
+    display: none; 
   }
+
+  /* 2. EXIBE o botão hamburger */
+  .hamburger { 
+    display: flex; 
+    z-index: 20002; /* Garante que o botão fique acima de tudo para fechar o menu */
+  }
+
+  /* 3. ESCONDE o botão do LinkedIn no mobile (opcional, dependendo do seu design) */
+  .nav-btn-linkedin { 
+    display: none; 
+  }
+
+  /* 4. AJUSTE do Mobile Menu (Remova o visibility: hidden se ele já estiver no estado base) */
+  /* O mobile-menu deve ser controlado pela classe .open que seu JS adiciona */
+}
 
   /* ── PROGRESS BAR ── */
   #progress-bar {
@@ -975,12 +1089,12 @@ body::before {
       <div class="stat-label">Anos de exp.</div>
     </div>
     <div class="stat-card">
-      <div class="stat-num" data-count="12">0</div>
-      <div class="stat-label">Projetos</div>
-    </div>
-    <div class="stat-card">
       <div class="stat-num" data-count="6">0</div>
       <div class="stat-label">Certificações</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" data-count="12">0</div>
+      <div class="stat-label">Projetos</div>
     </div>
   </div>
 </section>
@@ -1108,7 +1222,7 @@ body::before {
         <div class="timeline-desc">
           Curso completo cobrindo NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn e introdução a redes neurais com TensorFlow. Projetos práticos com datasets reais.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/overlay/education/1175942690/multiple-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo&treasuryMediaId=1769639102409" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_ciencia_de_dados.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1131,7 +1245,7 @@ body::before {
         <div class="timeline-desc">
           Técnicas para transformar problemas em oportunidades, lidar com o desconhecido e desenvolver comunicação assertiva.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1750888003283/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_emocao_alicerce.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1154,7 +1268,7 @@ body::before {
         <div class="timeline-desc">
           Domínio de comandos Git, gerenciamento de branches e uso de inteligência artificial para otimizar o desenvolvimento e elevar a qualidade do código.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1739643390025/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_github.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1166,7 +1280,7 @@ body::before {
         <div class="timeline-header">
           <div>
             <div class="timeline-date">2025</div>
-            <div class="timeline-title-text">Liderança:  Como Desenvolver Times de Alta Performance</div>
+            <div class="timeline-title-text">Liderança: Como Desenvolver Times de Alta Performance</div>
             <div class="timeline-org">SEBRAE</div>
           </div>
           <div style="display:flex;align-items:center;gap:10px">
@@ -1177,7 +1291,7 @@ body::before {
         <div class="timeline-desc">
           Competências em liderança pessoal, gestão de equipes e execução estratégica.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1752510759232/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_lideranca.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1200,7 +1314,7 @@ body::before {
         <div class="timeline-desc">
           Conceitos fundamentais de banco de dados e modelagem de dados para o desenvolvimento de soluções eficientes e escaláveis.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1740160327168/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_banco_dados.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1223,7 +1337,30 @@ body::before {
         <div class="timeline-desc">
           Desenvolvimento de estratégias de storytelling para o mercado internacional.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1751731069314/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_storytelling.pdf" target="_blank" class="timeline-link">
+          Ver certificado ↗
+        </a>
+      </div>
+    </div>
+
+  <div class="timeline-item" data-type="cert">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card" onclick="toggleTimeline(this)">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-date">2025</div>
+            <div class="timeline-title-text">Da ideia ao protótipo: validação rápida para empreendedores</div>
+            <div class="timeline-org">Senac Brasil</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="timeline-tag tag-cert">Certificação</span>
+            <span class="chevron">▼</span>
+          </div>
+        </div>
+        <div class="timeline-desc">
+          Soluções tangíveis de forma ágil, validando hipóteses e ajustando o caminho com base em feedback real.
+        </div>
+        <a href="/assets/certificado_prototipagem.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
@@ -1246,7 +1383,7 @@ body::before {
         <div class="timeline-desc">
           Amplianção das habilidades linguísticas aplicadas ao ambiente tecnológico.
         </div>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-jacinto/details/certifications/1740765094010/single-media-viewer/?profileId=ACoAAFF1IacBirxgn8C_ebosKZKiHTdyAav2Zqo" target="_blank" class="timeline-link">
+        <a href="/assets/certificado_ingles.pdf" target="_blank" class="timeline-link">
           Ver certificado ↗
         </a>
       </div>
